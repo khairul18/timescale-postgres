@@ -3,7 +3,7 @@ version: '3'
 services:
   timescaledb:
     image: timescale/timescaledb:latest-pg16
-    container_name: testtest
+    container_name: timescale-postgre
     ports:
       - "5566:5432"
     environment:
