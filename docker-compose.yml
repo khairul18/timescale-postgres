@@ -1,0 +1,28 @@
+version: '3'
+
+services:
+  timescaledb:
+    image: timescale/timescaledb:latest-pg16
+    container_name: testtest
+    ports:
+      - "5566:5432"
+    environment:
+      POSTGRES_USER_FILE: /run/secrets/user
+      POSTGRES_PASSWORD_FILE: /run/secrets/password
+      POSTGRES_DB_FILE: /run/secrets/db-name
+    volumes:
+      - ./data/pgdata:/var/lib/postgresql/data
+    secrets:
+      - user
+      - password
+      - db-name
+    restart: always
+secrets:
+    user:
+      file: .env.user
+    password:
+      file: .env.password
+    db-name:
+      file: .env.db-name
+volumes:
+  timescale_data:
